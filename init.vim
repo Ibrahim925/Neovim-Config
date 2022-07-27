@@ -14,6 +14,9 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'kyazdani42/nvim-tree.lua'
 	Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 	Plug 'folke/tokyonight.nvim'
+	Plug 'hashivim/vim-terraform'
+	Plug 'hashicorp/terraform-ls'
+	Plug 'airblade/vim-rooter'
 call plug#end()
 
 lua <<EOF
@@ -62,9 +65,22 @@ let mapleader = "\<Space>"
 nnoremap <Leader>o :only<CR>
 nnoremap <Leader>q :quit<CR>
 nnoremap <Leader>w :write<CR>
-nnoremap <Leader>f :NvimTreeToggle<CR>
-nnoremap <silent><S-H> :BufferLineCycleNext<CR>
-nnoremap <silent><S-L> :BufferLineCyclePrev<CR>
+nnoremap <Leader>f :NvimTreeFocus<CR>
+nnoremap <Leader>F :NvimTreeToggle<CR>
+nnoremap <silent><S-L> :BufferLineCycleNext<CR>
+nnoremap <silent><S-H> :BufferLineCyclePrev<CR>
+
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 
 let g:coc_global_extensions = [
 	\'coc-snippets',
@@ -74,9 +90,18 @@ let g:coc_global_extensions = [
 	\'coc-prettier',
 	\'coc-json',
 	\'coc-go',
-	\'coc-python',
 	\'coc-emmet',
+	\'coc-python',
+	\'coc-clangd',
+	\'coc-ccls',
 	\]
 
-let g:tokyonight_style = "night"
-colorscheme tokyonight
+colorscheme gruvbox
+
+highlight Cursor guifg=white guibg=orange
+highlight iCursor guifg=white guibg=orange
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
+
