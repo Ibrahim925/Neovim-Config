@@ -69,6 +69,7 @@ nnoremap <Leader>f :NvimTreeFocus<CR>
 nnoremap <Leader>F :NvimTreeToggle<CR>
 nnoremap <silent><S-L> :BufferLineCycleNext<CR>
 nnoremap <silent><S-H> :BufferLineCyclePrev<CR>
+nnoremap <silent><leader>bd :<C-U>bprevious <bar> bdelete #<CR>
 
 " " Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -97,11 +98,3 @@ let g:coc_global_extensions = [
 	\]
 
 colorscheme gruvbox
-
-highlight Cursor guifg=white guibg=orange
-highlight iCursor guifg=white guibg=orange
-set guicursor=n-v-c:block-Cursor
-set guicursor+=i:ver100-iCursor
-set guicursor+=n-v-c:blinkon0
-set guicursor+=i:blinkwait10
-
