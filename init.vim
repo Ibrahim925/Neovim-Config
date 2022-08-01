@@ -1,7 +1,6 @@
 set mouse=nicr
 set nocompatible
 set number
-
 call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'ctrlpvim/ctrlp.vim'
@@ -37,6 +36,14 @@ require("nvim-tree").setup({
 	sync_root_with_cwd = true,
 	icons = {
 		git_placement = "before"
+		
+	},
+	diagnostics = {
+		enable = true,
+		icons = {
+			error = "",
+			modified_icon = '●',
+		}
 	}
 })
 
