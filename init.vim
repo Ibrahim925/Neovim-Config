@@ -33,8 +33,11 @@ require("nvim-tree").setup({
 		group_empty = true,
 	},
 	filters = {
-		dotfiles = true,
 	},
+	sync_root_with_cwd = true,
+	icons = {
+		git_placement = "before"
+	}
 })
 
 
