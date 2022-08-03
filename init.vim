@@ -1,21 +1,21 @@
-set mouse=nicr
-set nocompatible
-set number
-
 call plug#begin('~/.config/nvim/plugged')
-    Plug 'tpope/vim-fugitive'
-    Plug 'ctrlpvim/ctrlp.vim'
+	"LSP
+	Plug 'hashicorp/terraform-ls'
+	Plug 'hashivim/vim-terraform'
+	"Basic Config
     Plug 'doums/darcula'
     Plug 'jiangmiao/auto-pairs'
-	Plug 'vim-airline/vim-airline'
 	Plug 'kyazdani42/nvim-web-devicons'
-	Plug 'kyazdani42/nvim-tree.lua'
-	Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
-	Plug 'hashivim/vim-terraform'
-	Plug 'hashicorp/terraform-ls'
-	Plug 'airblade/vim-rooter'
 	Plug 'lukas-reineke/indent-blankline.nvim'
+	"File management
+	Plug 'kyazdani42/nvim-tree.lua'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	Plug 'airblade/vim-rooter'
+	Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+	"Workflow
+    Plug 'ctrlpvim/ctrlp.vim'
+	Plug 'vim-airline/vim-airline'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 lua << EOF
@@ -41,68 +41,33 @@ require("nvim-tree").setup({
 require('bufferline').setup {
   options = {
     mode = "buffers", -- set to "tabs" to only show tabpages instead
-    close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
-    right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
-    left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
-    middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
-    -- NOTE: this plugin is designed with this icon in mind,
-    -- and so changing this is NOT recommended, this is intended
-    -- as an escape hatch for people who cannot bear it for whatever reason
     indicator_icon = '▎',
     buffer_close_icon = '',
     modified_icon = '●',
     close_icon = '',
     left_trunc_marker = '',
     right_trunc_marker = '',
-    --- name_formatter can be used to change the buffer's label in the bufferline.
-    --- Please note some names can/will break the
-    --- bufferline so use this at your discretion knowing that it has
-    --- some limitations that will *NOT* be fixed.
-    name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
-      -- remove extension from markdown files for example
+    name_formatter = function(buf) 
       if buf.name:match('%.md') then
         return vim.fn.fnamemodify(buf.name, ':t:r')
       end
     end,
     max_name_length = 18,
-    max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
+    max_prefix_length = 15, 
     tab_size = 18,
     diagnostics = "coc",
     diagnostics_update_in_insert = false,
-    -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
     diagnostics_indicator = function(count, level, diagnostics_dict, context)
       return "("..count..")"
     end,
-    -- NOTE: this will be called a lot so don't do any heavy processing here
-    custom_filter = function(buf_number, buf_numbers)
-      -- filter out filetypes you don't want to see
-      if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
-        return true
-      end
-      -- filter out by buffer name
-      if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
-        return true
-      end
-      -- filter out based on arbitrary rules
-      -- e.g. filter out vim wiki buffer from tabline in your work repo
-      if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
-        return true
-      end
-      -- filter out by it's index number in list (don't show first buffer)
-      if buf_numbers[1] ~= buf_number then
-        return true
-      end
-    end,
     offsets = {{filetype = "NvimTree", text = "Workspace"}},
-    color_icons = true, -- whether or not to add the filetype icon highlights
-    show_buffer_icons = true, -- disable filetype icons for buffers
+    color_icons = true,
+    show_buffer_icons = true,
     show_buffer_close_icons = true,
-    show_buffer_default_icon = true, -- whether or not an unrecognised filetype should show a default icon
-    show_close_icon = true,
+    show_buffer_default_icon = true, 
+	show_close_icon = true,
     show_tab_indicators = false,
-    persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-    -- can also be a table containing 2 custom separators
-    -- [focused and unfocused]. eg: { '|', '|' }
+    persist_buffer_sort = true,
     separator_style = "slant",
     enforce_regular_tabs = false,
     always_show_bufferline = true,
@@ -110,28 +75,16 @@ require('bufferline').setup {
   }
 }
 
-local status_ok, treesitter = pcall(require, "nvim-treesitter.configs")
-if not status_ok then
-	return
-end
-
-treesitter.setup {
-  ensure_installed = "all", -- one of "all" or a list of languages
-  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
+require("nvim-treesitter").setup {
+  ensure_installed = "all", 
+  sync_install = false, 
+  ignore_install = { "phpdoc" },
   matchup = {
-    enable = true, -- mandatory, false will disable the whole extension
-    -- disable = { "c", "ruby" }, -- optional, list of language that will be disabled
-    -- disable_virtual_text = false,
-    -- include_match_words = false
+    enable = true,
   },
   highlight = {
-    -- use_languagetree = true,
-    enable = true, -- false will disable the whole extension
-    -- disable = { "css", "html" }, -- list of language that will be disabled
-    -- disable = { "css", "markdown" }, -- list of language that will be disabled
-    disable = { "markdown" }, -- list of language that will be disabled
-    -- additional_vim_regex_highlighting = true,
+    enable = true,
+    disable = { "markdown" }, 
   },
   autopairs = {
     enable = true,
@@ -151,78 +104,8 @@ treesitter.setup {
       "#68a0b0",
       "#946EaD",
       "#c7aA6D",
-      -- "Gold",
-      -- "Orchid",
-      -- "DodgerBlue",
-      -- "Cornsilk",
-      -- "Salmon",
-      -- "LawnGreen",
     },
     disable = { "html" },
-  },
-  playground = {
-    enable = true,
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      -- Automatically jump forward to textobj, similar to targets.vim
-      lookahead = true,
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["at"] = "@class.outer",
-        ["it"] = "@class.inner",
-        ["ac"] = "@call.outer",
-        ["ic"] = "@call.inner",
-        ["aa"] = "@parameter.outer",
-        ["ia"] = "@parameter.inner",
-        ["al"] = "@loop.outer",
-        ["il"] = "@loop.inner",
-        ["ai"] = "@conditional.outer",
-        ["ii"] = "@conditional.inner",
-        ["a/"] = "@comment.outer",
-        ["i/"] = "@comment.inner",
-        ["ab"] = "@block.outer",
-        ["ib"] = "@block.inner",
-        ["as"] = "@statement.outer",
-        ["is"] = "@scopename.inner",
-        ["aA"] = "@attribute.outer",
-        ["iA"] = "@attribute.inner",
-        ["aF"] = "@frame.outer",
-        ["iF"] = "@frame.inner",
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        ["]m"] = "@function.outer",
-        ["]]"] = "@class.outer",
-      },
-      goto_next_end = {
-        ["]M"] = "@function.outer",
-        ["]["] = "@class.outer",
-      },
-      goto_previous_start = {
-        ["[m"] = "@function.outer",
-        ["[["] = "@class.outer",
-      },
-      goto_previous_end = {
-        ["[M"] = "@function.outer",
-        ["[]"] = "@class.outer",
-      },
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ["<leader>."] = "@parameter.inner",
-      },
-      swap_previous = {
-        ["<leader>,"] = "@parameter.inner",
-      },
-    },
   },
 }
 EOF
@@ -232,8 +115,11 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set termguicolors
+set mouse=nicr
+set nocompatible
+set number
+colorscheme darcula
 
-inoremap jj <Esc>
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -246,7 +132,9 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 
 let mapleader = "\<Space>"
-nnoremap <Leader>h :wincmd h<CR>
+inoremap jj <Esc>
+
+nnoremap <Leader>h :wincmd h<CR> 
 nnoremap <Leader>j :wincmd j<CR>
 nnoremap <Leader>l :wincmd l<CR>
 nnoremap <Leader>k :wincmd k<CR>
@@ -273,4 +161,3 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
-colorscheme darcula
