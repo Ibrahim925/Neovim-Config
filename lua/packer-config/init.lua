@@ -12,15 +12,21 @@ return require("packer").startup(function(use)
     --Text editing--
     use "windwp/nvim-autopairs"
 
+	--LSP
+	use "neovim/nvim-lspconfig"
+	use "williamboman/nvim-lsp-installer"
+	use "hrsh7th/cmp-nvim-lsp"
+	use "hrsh7th/cmp-nvim-lua"
+
     -- Completion
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-cmdline"
     use "saadparwaiz1/cmp_luasnip"
-
     use "L3MON4D3/LuaSnip"
     use "rafamadriz/friendly-snippets"
+	-- --
 
     --File management
     use "kyazdani42/nvim-tree.lua"
@@ -30,4 +36,8 @@ return require("packer").startup(function(use)
     --Work flow
     use "ctrlpvim/ctrlp.vim"
     use "tpope/vim-fugitive"
+
+	if PACKER_BOOTSTRAP then
+		require("packer").sync()
+	end
 end)
