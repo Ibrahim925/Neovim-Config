@@ -1,0 +1,8 @@
+require "packer-config"
+require "colorscheme-config"
+require "autopairs-config"
+require "mappings-config"
+require "tree-config"
+require "treesitter-config"
+require "bufferline-config"
+require "vim-settings"
