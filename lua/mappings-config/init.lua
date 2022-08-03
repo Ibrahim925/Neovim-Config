@@ -7,7 +7,7 @@ vim.cmd([[
     nnoremap <Leader>l :wincmd l<CR>
     nnoremap <Leader>k :wincmd k<CR>
     nnoremap <Leader>s :vsplit<CR>
-    nnoremap <Leader>q :q<CR>
+    nnoremap <Leader>q :q!<CR>
     nnoremap <Leader>w :w<CR>
     nnoremap <Leader>f :NvimTreeFocus<CR>
     nnoremap <Leader>F :NvimTreeToggle<CR>

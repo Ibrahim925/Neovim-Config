@@ -5,7 +5,7 @@ require("nvim-lsp-installer").on_server_ready(
 			capabilities = require("lsp-config.handlers").capabilities,
 		}
 
-		if server.name == "jsonls" then 
+		if server.name == "jsonls" then
 			local jsonls_opts = require("lsp-config.settings.jsonls")
 			opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
 		end
