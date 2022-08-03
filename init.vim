@@ -1,10 +1,10 @@
 set mouse=nicr
 set nocompatible
 set number
+
 call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'doums/darcula'
     Plug 'jiangmiao/auto-pairs'
 	Plug 'vim-airline/vim-airline'
@@ -17,6 +17,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'lukas-reineke/indent-blankline.nvim'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
+
 lua << EOF
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
@@ -31,22 +32,11 @@ require("nvim-tree").setup({
 	renderer = {
 		group_empty = true,
 	},
-	filters = {
-	},
 	sync_root_with_cwd = true,
-	icons = {
-		git_placement = "before"
-		
-	},
 	diagnostics = {
 		enable = true,
-		icons = {
-			error = "",
-			modified_icon = '●',
-		}
 	}
 })
-
 
 require('bufferline').setup {
   options = {
@@ -282,19 +272,5 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
-
-let g:coc_global_extensions = [
-	\'coc-snippets',
-	\'coc-pairs',
-	\'coc-tsserver',
-	\'coc-eslint',
-	\'coc-prettier',
-	\'coc-json',
-	\'coc-go',
-	\'coc-emmet',
-	\'coc-python',
-	\'coc-clangd',
-	\'coc-ccls',
-	\]
 
 colorscheme darcula
