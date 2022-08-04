@@ -14,7 +14,7 @@ return require("packer").startup(function(use)
 
 	--Text editing--
 	use "windwp/nvim-autopairs"
-	use "numToStr/Comment.nvim"
+	use 'b3nj5m1n/kommentary'
 
 	--LSP
 	use "neovim/nvim-lspconfig"

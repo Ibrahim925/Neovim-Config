@@ -1,1 +1,1 @@
-require("Comment").setup {}
+require('kommentary.config').use_extended_mappings()
