@@ -2,7 +2,7 @@ return require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
 
     --Appearance
-    use "doums/darcula"
+    use { "EdenEast/nightfox.nvim", tags="v0.1.0" }
     use "junegunn/rainbow_parentheses.vim"
     use "kyazdani42/nvim-web-devicons"
     use "lukas-reineke/indent-blankline.nvim"
@@ -36,8 +36,4 @@ return require("packer").startup(function(use)
     --Work flow
     use "ctrlpvim/ctrlp.vim"
     use "tpope/vim-fugitive"
-
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
 end)
