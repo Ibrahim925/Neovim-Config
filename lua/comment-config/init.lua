@@ -1,1 +1,1 @@
-require("Comment")
+require("Comment").setup {}
