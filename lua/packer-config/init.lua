@@ -1,16 +1,20 @@
 return require("packer").startup(function(use)
-    use "wbthomason/packer.nvim"
+	use "wbthomason/packer.nvim"
 
-    --Appearance
-    use { "EdenEast/nightfox.nvim", tags="v0.1.0" }
-    use "junegunn/rainbow_parentheses.vim"
-    use "kyazdani42/nvim-web-devicons"
-    use "lukas-reineke/indent-blankline.nvim"
-    use "nvim-treesitter/nvim-treesitter"
-    use "vim-airline/vim-airline"
+	--Greeting
+	use({ "goolord/alpha-nvim", commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94" })
 
-    --Text editing--
-    use "windwp/nvim-autopairs"
+	--Appearance
+	use "EdenEast/nightfox.nvim"
+	use "junegunn/rainbow_parentheses.vim"
+	use "kyazdani42/nvim-web-devicons"
+	use "lukas-reineke/indent-blankline.nvim"
+	use "nvim-treesitter/nvim-treesitter"
+	use "vim-airline/vim-airline"
+
+	--Text editing--
+	use "windwp/nvim-autopairs"
+	use "numToStr/Comment.nvim"
 
 	--LSP
 	use "neovim/nvim-lspconfig"
@@ -18,22 +22,23 @@ return require("packer").startup(function(use)
 	use "hrsh7th/cmp-nvim-lsp"
 	use "hrsh7th/cmp-nvim-lua"
 
-    -- Completion
-    use "hrsh7th/nvim-cmp"
-    use "hrsh7th/cmp-buffer"
-    use "hrsh7th/cmp-path"
-    use "hrsh7th/cmp-cmdline"
-    use "saadparwaiz1/cmp_luasnip"
-    use "L3MON4D3/LuaSnip"
-    use "rafamadriz/friendly-snippets"
+	-- Completion
+	use "hrsh7th/nvim-cmp"
+	use "hrsh7th/cmp-buffer"
+	use "hrsh7th/cmp-path"
+	use "hrsh7th/cmp-cmdline"
+	use "saadparwaiz1/cmp_luasnip"
+	use "L3MON4D3/LuaSnip"
+	use "rafamadriz/friendly-snippets"
 	-- --
 
-    --File management
-    use "kyazdani42/nvim-tree.lua"
-    use "airblade/vim-rooter"
-    use "akinsho/bufferline.nvim"
+	--File management
+	use "kyazdani42/nvim-tree.lua"
+	use "airblade/vim-rooter"
+	use "akinsho/bufferline.nvim"
 
-    --Work flow
-    use "ctrlpvim/ctrlp.vim"
-    use "tpope/vim-fugitive"
+	--Work flow
+	use "tpope/vim-fugitive"
+	use({ "nvim-lua/plenary.nvim", commit = "968a4b9afec0c633bc369662e78f8c5db0eba249" })
+	use({ "nvim-telescope/telescope.nvim", commit = "d96eaa914aab6cfc4adccb34af421bdd496468b0" })
 end)
