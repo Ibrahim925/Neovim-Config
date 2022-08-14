@@ -19,7 +19,7 @@ vim.cmd([[
 
     " " Copy to clipboard
     vnoremap  <leader>y  "+y
-    nnoremap  <leader>Y  "+yg_
+    nnoremap  <leader>Y  :%y+<CR>
     nnoremap  <leader>y  "+y
     nnoremap  <leader>yy  "+yy
 

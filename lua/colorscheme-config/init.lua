@@ -9,4 +9,7 @@ require("nightfox").setup {
 	}
 }
 
-vim.cmd("colorscheme nordfox")
+vim.cmd([[
+	let g:airline_theme='angr'
+	colorscheme nordfox
+]])

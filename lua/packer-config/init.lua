@@ -11,6 +11,7 @@ return require("packer").startup(function(use)
 	use "lukas-reineke/indent-blankline.nvim"
 	use "nvim-treesitter/nvim-treesitter"
 	use "vim-airline/vim-airline"
+	use "vim-airline/vim-airline-themes"
 
 	--Text editing--
 	use "windwp/nvim-autopairs"
