@@ -7,6 +7,7 @@ vim.cmd([[
     nnoremap <Leader>l :wincmd l<CR>
     nnoremap <Leader>k :wincmd k<CR>
     nnoremap <Leader>s :vsplit<CR>
+    nnoremap <Leader>S :split<CR>
     nnoremap <Leader>q :q<CR>
     nnoremap <Leader>w :w<CR>
     nnoremap <Leader>f :NvimTreeFocus<CR>
@@ -15,7 +16,7 @@ vim.cmd([[
     nnoremap <Leader>L :BufferLineMoveNext<CR>
     nnoremap <silent><S-L> :BufferLineCycleNext<CR>
     nnoremap <silent><S-H> :BufferLineCyclePrev<CR>
-    nnoremap <silent><leader>bd :<C-U>bprevious <bar> bdelete #<CR>
+    nnoremap <silent><leader>x :<C-U>bprevious <bar> bdelete #<CR>
 
     " " Copy to clipboard
     vnoremap  <leader>y  "+y
