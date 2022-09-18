@@ -11,7 +11,6 @@ require("nvim-tree").setup {
 	renderer = {
 		group_empty = true,
 	},
-	sync_root_with_cwd = true,
 	diagnostics = {
 		enable = true,
 	},
