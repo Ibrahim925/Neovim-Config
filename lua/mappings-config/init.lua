@@ -17,6 +17,7 @@ vim.cmd([[
     nnoremap <silent><S-L> :BufferLineCycleNext<CR>
     nnoremap <silent><S-H> :BufferLineCyclePrev<CR>
     nnoremap <silent><leader>x :<C-U>bprevious <bar> bdelete #<CR>
+	nnoremap <silent><Leader>. :!open .<CR>
 
     " " Copy to clipboard
     vnoremap  <leader>y  "+y
