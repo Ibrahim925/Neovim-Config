@@ -1,7 +1,8 @@
 require('bufferline').setup {
     options = {
         mode = "buffers", -- set to "tabs" to only show tabpages instead
-        indicator_icon = '▎',
+        icon = '▎',
+		style="icon",
         buffer_close_icon = '',
         modified_icon = '●',
         close_icon = '',
@@ -28,7 +29,7 @@ require('bufferline').setup {
 	    show_close_icon = true,
         show_tab_indicators = false,
         persist_buffer_sort = true,
-        separator_style = "slant",
+        -- separator_style = "slant",
         enforce_regular_tabs = false,
         always_show_bufferline = true,
         sort_by = 'insert_after_current'
